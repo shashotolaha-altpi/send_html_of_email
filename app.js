@@ -47,14 +47,16 @@ console.log(otp);
 
 app.post('/send', function (req, res) {
     console.log(req.body);
+     /* console.log(req.body.fileContent) */
     //email = req.body.email;
+    // const fileContent = req.body.fileContent;
 
     // send mail with defined transport object
     var mailOptions = {
         from:"no-reply@alt-pi.in",
         to: req.body.email,
         subject: "Otp for registration is: ",
-        html: "<h3>OTP for account verification is </h3>" + "<h1 style='font-weight:bold;'>" + otp + "</h1>"  // html body
+        html: /* fileContent */ + "<h3>OTP for account verification is </h3>" + "<h1 style='font-weight:bold;'>" + otp + "</h1>"  // html body
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -95,7 +97,7 @@ app.post('/verify', function (req, res) {
 }); 
 
 //defining port
-const PORT = process.env.PORT || 2000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`app is live at http://localhost:${PORT}`);
 })
