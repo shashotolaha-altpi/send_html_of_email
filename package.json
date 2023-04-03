@@ -20,7 +20,7 @@
     "console",
     "listen"
   ],
-  "author": "Siddhi Rane",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
