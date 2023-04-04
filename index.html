@@ -1,13 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
     <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: black;
+            /* color: whitesmoke; */
+            border: 1px solid;
+            font-size: 1.25rem;
+            max-width: 50rem;
+            margin: auto;
+            padding: 1rem;
+        }
+
+        #wapper{
+            background-color: blanchedalmond;
+        }
+
+        header {
+            /* background-color: gray; */
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+        }
+
+        #logo {
+            text-align: center;
+        }
+        #logo h1{
+            background: linear-gradient(to right,rgb(72, 131, 214), rgb(63, 235, 220));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+        }
+
+        img {
+            width: 100%;
+        }
+
+        #one-col h1{
+            text-align: center;
+        }
+        #one-col p{
+            text-align: start;
+            margin: 3%;
+        }
+
+
+        hr{
+            height: 0.1rem;
+            background-color: burlywood;
+        }
+
+
+        /* footer */
+
+        footer{
+            display: flex;
+        }
+
+        #social {
+            max-width: o.75rem;
+            max-height: 5rem;
+            margin: auto;
+            list-style: none;
+            display: inline;
+            /* align-items: end; */
+            justify-content: end;
+            overflow: hidden;
+        }
+        #social img {
+            max-width: 2rem;
+            margin: 0.2rem;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <div id="wapper">
+        <header>
+            <div id="logo">
+                <h1>Alt-pi</h1>
+            </div>
+        </header>
+        <div class="banner">
+            <img src="img/midle.webp" alt="images of mountains">
+        </div>
+        <div id="one-col">
+            <h1>Making it responsive</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro ut eaque, voluptates incidunt eligendi
+                error enim minus? Quasi assumenda omnis numquam, cum iste eligendi impedit, accusantium, alias enim
+                necessitatibus voluptatem! Similique aspernatur voluptatibus ut suscipit assumenda vel excepturi!
+                Expedita, adipisci cum iusto quas numquam quia, nobis eveniet et omnis aut unde officiis esse ipsum
+                commodi dolorum necessitatibus modi rem ratione repellendus eligendi ea? Architecto, natus magni, quia
+                esse doloribus dolorum mollitia nulla reprehenderit ipsa ad dicta corrupti libero accusamus temporibus,
+                incidunt dolores non ducimus necessitatibus quos fuga nam neque expedita nobis minima. Quidem
+                exercitationem consequatur reprehenderit, aliquid veritatis nihil culpa.
+            </p>
+            <hr>
+            <footer>
+                <div id="contact">
+                    <p>
+                        Alt-pi <br>
+                        andheri (EAST) <br>
+                        contact (+91 00000 00000)
+                    </p>
+                </div>
+                <div id="social">
+                    <img src="img/insta.png" alt="">
+                    <img src="img/facebook.png" alt="">
+                </div>
+            </footer>
+        </div>
+    </div>
+
 </body>
+
 </html>
