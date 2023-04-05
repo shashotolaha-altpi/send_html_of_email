@@ -3,10 +3,10 @@ const bodyparser = require("body-parser");
 const nodemailer = require("nodemailer");
 const path = require("path");
 const exphbs = require("express-handlebars");
+const fs = require("fs");
+const { fileURLToPath } = require("url");
+
 const app = express();
-
-
-
 
 //getting html content form the base.html
 
@@ -31,9 +31,10 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.get("/", function (req, res) {
   console.log("this is get method");
+  // console.log(req);
+  // console.log(res);
   res.render("contact");
 });
-let email;
 
 let transporter = nodemailer.createTransport({
   host: "smtpout.secureserver.net",
@@ -46,27 +47,26 @@ let transporter = nodemailer.createTransport({
     pass: "P9!6_Dgb6o",
   },
 });
+
 let otp = Math.random();
 otp = otp * 1000000;
 otp = parseInt(otp);
 console.log(otp);
 
-
-
 app.post("/send", function (req, res) {
+  // const file = req.body.file;
+  const htmlContent = fs.readFileSync(`${req.body.file}`, "utf-8");
   console.log("this is post method ");
-  var htmlcontent = req.body.fileContent;
-  console.log("this is requested body", htmlcontent ,otp);
-  //email = req.body.email;
-
+  console.log("this is requested otp", otp);
+  // console.log(htmlContent);
+ 
   // send mail with defined transport object
   var mailOptions = {
     from: "no-reply@alt-pi.in",
     to: req.body.email,
     subject: "Otp for registration is: ",
     html:
-      "From alt pi to you" +
-      htmlcontent +
+      htmlContent +
       "<h3>OTP for account verification is </h3>" +
       "<h1 style='font-weight:bold;'>" +
       otp +
@@ -75,18 +75,19 @@ app.post("/send", function (req, res) {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      return console.log(error);
+      return console.log("this is error ", error);
     }
     console.log("Message sent: %s", info.messageId);
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     console.log("email sent ", info.response);
 
     res.render("otp");
   });
 });
+
 app.post("/resend", function (req, res) {
   var mailOptions = {
-    to: email,
+    to: req.body.email,
     subject: "Otp for registration is: ",
     html:
       "<h3>OTP for account verification is </h3>" +
@@ -100,7 +101,7 @@ app.post("/resend", function (req, res) {
       return console.log(error);
     }
     console.log("Message sent: %s", info.messageId);
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     res.render("otp", { msg: "otp has been sent" });
   });
 });
@@ -117,4 +118,3 @@ const PORT = process.env.PORT || 2000;
 app.listen(PORT, () => {
   console.log(`app is live at http://localhost:${PORT}`);
 });
-  
